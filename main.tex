@@ -1,14 +1,137 @@
 \documentclass{article}
-\usepackage{graphicx} % Required for inserting images
-
-\title{\LaTeX}
-\author{YourName}
-\date{}
-
+\usepackage[a4paper, left=0.15cm, right=0.15cm, top=0.15cm, bottom=0.15cm]{geometry}
+\usepackage{multicol}
+\setlength{\columnsep}{0.2cm}
 \begin{document}
+\begin{multicols*}{3}
+\section{Graphen}
+    \subsection{Begriffe}
+        - \textbf{Schleife:} Kante mit gleichen Endpunkten
+        \\- \textbf{Mehrfachkante:} Kanten mit der der gleichen Menge von Endpunkten
+        \\- \textbf{Einfacher Graph:} keine Schleifen, keine Mehrfachkanten
+        \\- \textbf{Komplement:} $u, v \in E(\overline {G}) \Leftrightarrow u, v \in E(G)$ 
+        \\- \textbf{Clique:} eine Menge paarweise benachbarter Knoten 
+        \\- \textbf{Unabhängige Menge:} eine Menge paarweise nicht benachbarter Knoten
+        \\- \textbf{Zusammenhängend:} alle Paare von Knoten ein Weg/Pfad in G ein Teilgraph ist
+        \\- \textbf{Adjazenzmatrix A(G):} n x n
+        \\- \textbf{Adjazenzmatrix M(G):} n x m 
+        \\- \textbf{Grad:} Anzahl inzidenter Kanten
+        \\- \textbf{Schnittkante:} deren Entfernen die Anzahl der Komponenten (zusammenhängenden Teilgraphen) erhöht
+        \\- \textbf{Schnittknoten:} ein Knoten dessen Entfernung die Anzahl der Komponenten im Graph erhöht
+        \\- \textbf{Eulersch:} Graph ist Eulersch wenn er einen geschlossenen Kantenzug/Zyklus, der alle Kanten beinhaltet enthält
+        \\- \textbf{$d(v)$ oder $d_G(v)$:} Grad ist die Anzahl der Kanten inzident zu v (bei Schleifen, Kante doppelt)
+        \\- \textbf{$N(v)$ oder $N_G(v)$:} Nachbarschaft ist die Menge aller Knoten benachbart zu v
+        \\- \textbf{$\Delta(G)$:} maximale Grad
+        \\- \textbf{$\delta(G)$:} minimale Grad
+        \\- \textbf{G ist regulär:} $\Delta(G) = \delta(G)$
+        \\- \textbf{n(G):} Anzahl der Knoten
+        \\- \textbf{e(G)} Anzahl der Kanten
+    \subsection{Nomenklatur}
+        - \textbf{$P_n$:} Weg/Pfad mit n Knoten
+        \\- \textbf{$C_n$:} Zyklus mit n Knoten
+        \\- \textbf{$K_n$:} einfacher Graph mit maximaler Kantenzahl
+        \\- \textbf{$K_{r, s}$:} vollständiger bipartiter Graph
+    \subsection{Rundgang durch den ungerichteten Graph}
+        - \textbf{Kantenzug:} eine Liste von $v_0, e_1, v_1, ..., e_k, v_k$
+        \\- \textbf{u, v- Kantenzug:} erster Knoten u,  letzter v
+        \\- \textbf{Zyklus:} Kantenzug mit gleichen ersten und letzten Knoten
+        \\- \textbf{Eulerzug:} Zyklus, der alle Kanten des Graphen beinhaltet
+        \\- \textbf{ Weg (Pfad):} Weg der aus den Kanten und Knoten eines Kantenzugs
+    \subsection{Lemmas/Propositionen/Sätze}
+        - \textbf{Lemma:} Jeder u,v-Kantenzug enthält einen u-v-Weg
+        \\- \textbf{Proposition:} Jeder Graph mit n Knoten und k Kanten hat mindestens n-k Komponenten
+        \\- \textbf{Satz:} Eine Kante ist eine Schnittkante genau dann, wenn sie zu keinem Zyklus gehört
+        \\- \textbf{Satz [König 1936]:} Ein Graph ist bipartit genau dann, wenn er keinen Zyklus ungerader Länge hat
+        \\- \textbf{Lemma:} Wenn jeder Knoten eines Graphs G mindestens den Grad 2 hat dann besitzt G einen geschlossenen Kantenzug
+        \\- \textbf{Satz von Euler:} Graph G ist Eulersch, genau dann wenn, G genau eine nicht-triviale Komponente hat und alle Knoten geraden Grad besitzen
+        \\- \textbf{Proposition:} $\sum_{V \in V(G)} d(v) = 2_e(G)$
+        \\- \textbf{Proposition:} Die kleinste Anzahl von Kanten in einem zusammenhängenden Graph mit n Knoten ist n-1
+\section{Gerichtete Graphen (Digraphen)}
+    \subsection{Begriffe}
+        - \textbf{Schleife:} eine Kante mit gleichen Anfangs- und End-Knoten
+        \\- \textbf{Mehrfachkanten:}  haben die gleichen Endknotenpaare
+        \\- \textbf{Einfacher Digraphen:} jedes Endknotenpaar ist nur einer Kante zugeordnet und höchstens pro Knoten eine Schleife vorkommt
+        \\- \textbf{Zugrunde liegende Graph G:} eines Digraphen D V(G) = V(D), E(G) = E(D)
+        \\- \textbf{Schwach zusammenhängend:} wenn der zugrunde liegende Graph zusammenhängend ist
+        \\- \textbf{Stark zusammenhängend:} wenn für alle Knoten u, v es einen Pfad von u nach v gibt
+    \subsection{Knotengrade}
+        - \textbf{Schleife:} eine Kante mit gleichen Anfangs- und End-Knoten
+        \\- \textbf{$d^+(v)$:} ist die Anzahl der Kanten mit Anfangsknoten v
+        \\- \textbf{$d^-(v)$:} ist die Anzahl Kanten mit Endknoten v
+        \\- \textbf{$N^+(v)$:} $= \{x \in V(G) | v \rightarrow x\}$
+        \\- \textbf{$N^-(v)$:} $= \{x \in V(G) | x \rightarrow v\}$
+    \subsection{Rundgang durch den ungerichteten Graph}
+        - \textbf{u,v-Pfad/Weg} der Weg der aus den Kanten und Knoten eines Kantenzugs von u nach v 
+        \\- \textbf{Länge} von Kantenzügen, Zyklen und Pfaden ist die Anzahl der Kanten
+        \\- \textbf{Eulerzug} der Kantenzug, der alle Kanten genau einmal beinhaltet
+        \\- \textbf{ Euler-Zyklus} ein geschlossener Kantenzug mit allen Kanten
+        \\- \textbf{Eulersch} wenn er einen Euler-Zyklus besitzt
+    \subsection{Lemmas/Propositionen/Sätze}
+        - \textbf{Proposition:} $\sum_{v \in V(G)} d^+(v) = e(G) = \sum_{v \in V(G)} d^-(v)$
+        \\- \textbf{Lemma:} $\delta^+(G) \geq 1$ oder $\delta^-(G) \geq 1$ dann besitzt G einen Kreis
+        \\- \textbf{Satz von Euler:} Ein gerichteter Graph is Eulersch wenn $d^+(u) = d^-(u) \forall u$ und der zugrunde liegende Graph höchstens eine nicht-triviale Komponente besitzt
+\section{Bäume}
+    \subsection{Begriffe}
+        - \textbf{Azyklisch/Kreisfrei} einfacher Graph ohne Kreis
+        \\- \textbf{Wald} einfacher Graph ohne Kreis
+        \\- \textbf{Baum} zusammenhängender Wald
+        \\- \textbf{$d_G(u,v)$ (Distanz)} kürzeste Länge eines u,v-Pfades 
+        \\- \textbf{diam G (Durchmesser)} $:= max_{u,v \in V(G)} d(u,v)$
+        \\- \textbf{ $\epsilon(u)$ (Exzentrizität)} $:= max_{v \in V(G)} d(u,v)$
+        \\- \textbf{rad G (Radius)} $:= min_{u \in V(G)} \epsilon(u,v)$
+        \\- \textbf{Block} ein nicht erweiterbarer zusammenhängender Teilgraph von G, der keine Schnittknoten hat 
+        \\- \textbf{Knotenschnitt} eine Menge $S \subseteq V(G)$, so dass G – S mehr als eine Komponente besitzt
+        \\- \textbf{Zusammenhang k(G)} kleinste Menge $S \subseteq V(G)$  G – S unzusammenhängend ist/ nur aus einem Knoten besteht
+        \\- \textbf{k-zusammenhängend} Zusammenhang mindestens k 
+    \subsection{Lemmas/Propositionen/Sätze}
+        - \textbf{Lemma}
+            \\ - Jeder Baum mit mindestens zwei Knoten hat mindestens zwei Blätter
+            \\ - Durch Löschen eines Blattes eines n-Knoten-Baumserhält man einen Baum mit n-1 Knoten
+        \\- \textbf{Korollar}
+            \\ - Jede Kante eines Baumes ist eine Schnittkante
+            \\ - Das Hinzufügen einer neuen Kante zu einem Baum erzeugt genau einen Kreis
+            \\ - Jeder zusammenhängende Graph enthält einen Spannbaum
+        \\- \textbf{Satz} Für einen einfachen Graph G gilt $diam G \geq 3 \rightarrow diam G \leq 3$
+\section{DFS-Suchbäume}
+     \subsection{Taxonomie der Kanten}
+        Seien $(a_u, b_u)$ und $(a_v, b_v)$ die Start/End-Zeiten
+        \\- \textbf{Vorwärtskante} $a_u < a_v < b_v < b_u$
+        \\- \textbf{Rückwärtskante} $a_v < a_u < b_u < b_v$
+        \\- \textbf{Querkante} $a_v < b_v < a_u < b_u$
+\section{Matchings}
+    - \textbf{Matching} Menge von (Nicht-Schleifen) Kanten, die keine Endpunkte gemein haben
+    \\- \textbf{M-gesättigt} Die Knoten inzident mit den Kanten eines Matchings
+    \\- \textbf{perfektes Matching} sättigt ale Knoten
+    \\- \textbf{Größe eines Matchings} ist die Anzahl der Kanten
+    \\- \textbf{symmetrische Differenz $G \Delta H$} :$= (G - H) \cup (H - G)$
+    \\- \textbf{Lemma} Jede Komponente einer symmetrischen Differenz zweier Matchings von G ist ein Pfad oder ein Kreis mit gerader Knotenanzahl
+    \\- \textbf{Satz von Hall} Ein X, Y-Bigraph hat ein Matching, dass X sättigt, genau dann wenn $|N(S)| \leq |S|$ für alle $S \subseteq X$
+    \\- \textbf{Knotenüberdeckung} Menge $Q \subseteq V(G)$, die mindestens einen Endpunkt jeder Kante enthält (minimale Anzahl von Polizisten an Kreuzungen, die alle Straßen (Kanten) überwachen)
+    \\- \textbf{Minimale Knotenüberdeckung} minimiert die Anzahl der Knoten in Q (minimale Anzahl von Polizisten an Kreuzungen, die alle Straßen (Kanten) überwachen)
+    \\- \textbf{Unabhängigkeitszahl} ist die maximale Größe einer Menge von unabhängigen (wenn sie nicht benachbart sind) Knoten
+    \\- \textbf{Kantenüberdeckung} ist eine Menge L von Kanten, so dass jeder Knoten von G mit einer Kante inzident ist
+    \\- \textbf{$\alpha(G)$} maximale (größtmögliche) Größe einer unabhängigen Menge in G
+    \\- \textbf{$\alpha'(G)$} maximale (größtmögliche) Größe eines Matchings in G
+    \\- \textbf{$\beta(G)$} minimale (kleinstmögliche) Menge einer Knotenüberdeckung (Vertex Cover) von G
+    \\- \textbf{$\beta'(G)$} minimale (kleinstmögliche) Menge einer Kantenüberdeckung (Edge Cover) von G
+    \subsection{Lemmas/Propositionen/Sätze}
+        - \textbf{Korollar} Für $k > 0$ hat jeder k-reguläre bipartite Graph ein perfektes Matching
+        \\ - \textbf{Satz von König und Egerváry} Für jeden bipartiten Graph G entspricht die Größe des maximalen (größtmöglichen) Matching genau der Größe des minimalen (kleinstmöglichen) Vertex Cover
+        \\ - \textbf{Lemma} In einem Graph ist die Knotenmenge S genau dann eine unabhängige Menge, wenn eine Knotenüberdeckung ist
+        \\ - \textbf{Satz von Gallai (1959)} Falls G keine isolierten Knoten (ohne Kanten) hat, dann gilt $\alpha'(G) + \beta'(G) = n(G)$
+\section{Min-Cut/Max-Flow}
+    \subsection{Begriffe}
+    - \textbf{Netzwerk} Digraph    
+    \\- \textbf{Kapazität} $c(e) \geq 0$
+    \\- \textbf{Quelle} $s \in V$
+    \\- \textbf{Senke} $t \in V$
+    \\- \textbf{Fluss $f^+(v)$} $:= \sum_{v, w \in E} f(v, w)$ Fluss aus dem Knoten v heraus
+    \\- \textbf{Fluss $f^-(v)$} $:= \sum_{w, v \in E} f(v, w)$ Fluss  in den Knoten v hinein
+    \\- \textbf{Nettofluss} $f^-(v) - f^+(v)$
+    \\- \textbf{Kapazitätsbeschränkungen} $\forall e \in E : 0 \leq f(e) \leq c(e)$
+    \\- \textbf{Konservierungseinschränkungen} $\forall v \in V \setminus \{s, t\} : f^+(v) = f^-(v)$
+    \\- \textbf{Flow ist realisierbar} wenn die Kapazitätsbeschränkungen und die Konservierungseinschränkungen eingehalten werden
+    \\- \textbf{Flusswert} $val(f) = f^+(v) - f^-(v)$
 
-\maketitle
-
-\section{Introduction}
-
+\end{multicols*}
 \end{document}
